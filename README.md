@@ -68,7 +68,7 @@ Listado: http://localhost:8000/taxes/payables/
     ]
 }
 ```
-CRUD: http://localhost:8000/taxes/payables/&lt;barcode&gt;/<br/>
+CRUD: http://localhost:8000/taxes/payables/`barcode`/<br/>
 Mediante los métodos HTTP: `GET, PUT, PATCH, DELETE`
 <br/>
 <br/>
