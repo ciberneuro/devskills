@@ -109,7 +109,7 @@ Listado: http://localhost:8000/taxes/transactions/
     ]
 }
 ```
-CRUD: http://localhost:8000/taxes/transactions/&lt;pk&gt;/<br/>
+CRUD: http://localhost:8000/taxes/transactions/`pk`/<br/>
 Mediante los métodos HTTP: `GET, PUT, PATCH, DELETE`
 <br/>
 <br/>
@@ -151,7 +151,7 @@ http://localhost:8000/taxes/pending_payables/water/<br/>
 >    * Importe acumulado
 >    * Cantidad de transacciones en esa fecha
 
-http://localhost:8000/taxes/transaction_summary/&lt;date_start&gt;/&lt;date_end&gt;/<br/>
+http://localhost:8000/taxes/transaction_summary/`date_start`/`date_end`/<br/>
 ```
 [
     {"pay_date":"2021-09-15","transactions":2,"amount":4000.0},
