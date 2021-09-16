@@ -15,7 +15,7 @@ Card-Validator
 Las versiones de los paquetes y sus dependencias se encuentran en el archivo requirements.txt. Una forma directa de instalarlos es creando un entorno virtual. Por ejemplo:
 ```
 python3 -m venv env-devskills
-env-devskills/bin/activate
+. env-devskills/bin/activate
 pip install -r requirements.txt
 ```
 Después se deben cargar las migraciones, crear un usuario y levantar el servidor.
