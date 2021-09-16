@@ -23,8 +23,6 @@ class PayableList(generics.ListAPIView):
 
 
 class TransactionsSummary(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
-    # permission_classes = [permissions.IsAuthenticated]
     renderer_classes = (JSONRenderer,)
 
     def get_queryset(self):
@@ -36,7 +34,7 @@ class TransactionsSummary(APIView):
         transactions = (
             Transaction.objects.filter(pay_date__lte=date_end, pay_date__gte=date_start)
             .values("pay_date")
-            .annotate(transactions=Count("pk"), amount = Sum("amount"))
+            .annotate(transactions=Count("pk"), amount=Sum("barcode__amount"))
         )
         transactions = [elem for elem in transactions]
         return Response(transactions)

@@ -9,30 +9,75 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Payable',
+            name="Payable",
             fields=[
-                ('service_type', models.CharField(choices=[('electric', 'Electric'), ('gas', 'Gas'), ('water', 'Water'), ('internet', 'Internet'), ('others', 'Others')], max_length=100)),
-                ('description', models.CharField(max_length=500)),
-                ('exp_date', models.DateField()),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('paid', 'Paid'), ('cancelled', 'Cancelled')], default='pending', max_length=100)),
-                ('barcode', models.BigIntegerField(primary_key=True, serialize=False)),
+                (
+                    "service_type",
+                    models.CharField(
+                        choices=[
+                            ("electric", "Electric"),
+                            ("gas", "Gas"),
+                            ("water", "Water"),
+                            ("internet", "Internet"),
+                            ("others", "Others"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                ("description", models.CharField(max_length=500)),
+                ("exp_date", models.DateField()),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending"),
+                            ("paid", "Paid"),
+                            ("cancelled", "Cancelled"),
+                        ],
+                        default="pending",
+                        max_length=100,
+                    ),
+                ),
+                ("barcode", models.BigIntegerField(primary_key=True, serialize=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Transaction',
+            name="Transaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('method', models.CharField(choices=[('debit', 'Debit Card'), ('credit', 'Credit Card'), ('cash', 'Cash')], max_length=100)),
-                ('card_number', models.CharField(blank=True, max_length=200)),
-                ('pay_date', models.DateField(default=datetime.date.today)),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('barcode', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='taxes.payable')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "method",
+                    models.CharField(
+                        choices=[
+                            ("debit", "Debit Card"),
+                            ("credit", "Credit Card"),
+                            ("cash", "Cash"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                ("card_number", models.CharField(blank=True, max_length=200)),
+                ("pay_date", models.DateField(default=datetime.date.today)),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "barcode",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="taxes.payable"
+                    ),
+                ),
             ],
         ),
     ]

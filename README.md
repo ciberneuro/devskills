@@ -163,5 +163,5 @@ http://localhost:8000/taxes/transaction_summary/&lt;date_start&gt;/&lt;date_end&
 
 1. Este es un código de demo y por lo tanto no posee una configuración de producción.
 2. Los documentos no están asociados a los usuarios. Todo usuario con permiso puede crear facturas o borrar facturas y pagar facturas creadas por otros usuarios.
-3. No hay validación entre el monto de la boleta y el monto del pago. Realizar validaciones implica verificar múltiples condiciones que deben validarse en múltiples momentos (edición de montos, anulación, eliminación, cambio de código de barra), se permite editar los datos sin validarlos por simpleza.
-4. Registrar un pago cambia el estado de la boleta de pendiente a pagado. No se revierte el estado por borrar o cambiar los datos del pago (complejidad explicada en el punto anterior).
+3. Registrar un pago cambia el estado de la boleta de pendiente a pagado. No se revierte el estado a pendiente ya que esto implica verificar múltiples condiciones fuera del alcance de la demo (anulación, eliminación, cambio de código de barra). 
+4. Si bien los casos fuera del alcance mencionado en el punto anterior deberían estar bloqueados. Se han dejado habilitados por flexibilidad considerando que es una demo.

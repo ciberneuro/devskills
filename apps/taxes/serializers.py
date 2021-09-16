@@ -48,17 +48,33 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     barcode = serializers.PrimaryKeyRelatedField(
         many=False, read_only=False, queryset=Payable.objects
     )
+    amount = serializers.SerializerMethodField()
 
     class Meta:
         model = Transaction
         fields = ["pk", "url", "method", "card_number", "pay_date", "barcode", "amount"]
-    
+
+    def get_amount(self, obj):
+        return obj.barcode.amount
+
     def validate(self, data):
-        if data["method"] == Transaction.METHOD_CASH and data["card_number"] and data["card_number"] != "":
-            raise serializers.ValidationError("Can't add a card number when paying with cash.")
-        if data["method"] != Transaction.METHOD_CASH and not(data["card_number"] and data["card_number"] != ""):
-            raise serializers.ValidationError("Card number required when not paying with cash.")
-        if data["method"] != Transaction.METHOD_CASH and not luhn.is_valid(data["card_number"]):
+        if (
+            data["method"] == Transaction.METHOD_CASH
+            and data["card_number"]
+            and data["card_number"] != ""
+        ):
+            raise serializers.ValidationError(
+                "Can't add a card number when paying with cash."
+            )
+        if data["method"] != Transaction.METHOD_CASH and not (
+            data["card_number"] and data["card_number"] != ""
+        ):
+            raise serializers.ValidationError(
+                "Card number required when not paying with cash."
+            )
+        if data["method"] != Transaction.METHOD_CASH and not luhn.is_valid(
+            data["card_number"]
+        ):
             raise serializers.ValidationError("Card number is not valid.")
         return data
 
